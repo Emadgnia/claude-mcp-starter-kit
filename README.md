@@ -2,10 +2,18 @@
 
 A practical starter repository for building Claude-compatible MCP plugins using Node.js.
 
+## Scope
+
+This repository is plugin-only.
+
+For installable shared skills, use the companion repo:
+
+- [claude-agent-skills](https://github.com/Emadgnia/claude-agent-skills)
+
 ## What You Get
 
 - Runnable MCP server over stdio
-- Example tools (`echo`, `utc_now`, `slugify`)
+- Example utility tools (`echo`, `utc_now`, `slugify`)
 - Smoke test and basic lint check
 - Open-source community standards files
 

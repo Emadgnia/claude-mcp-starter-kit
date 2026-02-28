@@ -1,13 +1,17 @@
 #!/usr/bin/env node
 
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 
+const THIS_FILE = fileURLToPath(import.meta.url);
+
 export function buildServer() {
   const server = new McpServer({
     name: 'claude-mcp-starter-kit',
-    version: '0.1.0'
+    version: '0.2.0'
   });
 
   server.registerTool(
@@ -57,7 +61,7 @@ export function buildServer() {
   return server;
 }
 
-async function main() {
+export async function main() {
   const server = buildServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
@@ -69,7 +73,10 @@ if (process.argv.includes('--help')) {
   process.exit(0);
 }
 
-main().catch((error) => {
-  console.error('[mcp-server] fatal:', error);
-  process.exit(1);
-});
+const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : '';
+if (invokedPath && invokedPath === THIS_FILE) {
+  main().catch((error) => {
+    console.error('[mcp-server] fatal:', error);
+    process.exit(1);
+  });
+}

@@ -1,6 +1,6 @@
 {
   "name": "claude-mcp-starter-kit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Open-source starter kit for building Claude MCP plugins with Node.js.",
   "license": "MIT",
   "type": "module",
@@ -8,6 +8,11 @@
   "bin": {
     "claude-mcp-starter": "src/server.js"
   },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "node src/server.js",
     "smoke": "node tests/smoke.mjs",
